@@ -1,4 +1,4 @@
-package com.jobapplicationapi.jobapplicationapi.users;
+package com.jobapplicationapi.jobapplicationapi.entities;
 
 import jakarta.persistence.*;
 import com.jobapplicationapi.jobapplicationapi.address.Address;

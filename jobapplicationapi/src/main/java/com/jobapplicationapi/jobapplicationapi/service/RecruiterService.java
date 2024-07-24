@@ -1,7 +1,7 @@
 package com.jobapplicationapi.jobapplicationapi.service;
 
 
-import com.jobapplicationapi.jobapplicationapi.users.Recruiter;
+import com.jobapplicationapi.jobapplicationapi.entities.Recruiter;
 
 import java.util.List;
 import java.util.Optional;
