@@ -2,12 +2,12 @@ package com.jobapplicationapi.jobapplicationapi.application;
 
 
 import jakarta.persistence.Entity;
-import com.jobapplicationapi.jobapplicationapi.entities.*;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "openvacancies")
 public class JobAdvertisements {
 
     @Id
@@ -17,7 +17,7 @@ public class JobAdvertisements {
     private double salary;
     private LocalDate startDate;
     private LocalDate applicationCloseDate;
-    private Recruiter recruiter;
+    private Long recruiterId;
     private int numberOfApplicants;
 
 
@@ -25,9 +25,9 @@ public class JobAdvertisements {
     public JobAdvertisements() {
     }
 
-    public JobAdvertisements(LocalDate applicationCloseDate, Recruiter recruiter, LocalDate startDate, double salary, String vacancyTitle, Long jobId) {
+    public JobAdvertisements(LocalDate applicationCloseDate, Long recruiterId, LocalDate startDate, double salary, String vacancyTitle, Long jobId) {
         this.applicationCloseDate = applicationCloseDate;
-        this.recruiter = recruiter;
+        this.recruiterId = recruiterId;
         this.startDate = startDate;
         this.salary = salary;
         this.vacancyTitle = vacancyTitle;
@@ -42,12 +42,12 @@ public class JobAdvertisements {
         this.jobId = jobId;
     }
 
-    public Recruiter getRecruiter() {
-        return recruiter;
+    public Long getRecruiterId() {
+        return recruiterId;
     }
 
-    public void setRecruiter(Recruiter recruiter) {
-        this.recruiter = recruiter;
+    public void setRecruiterId(Long recruiterId) {
+        this.recruiterId = recruiterId;
     }
 
     public LocalDate getApplicationCloseDate() {
@@ -99,7 +99,7 @@ public class JobAdvertisements {
                 ", salary=" + salary +
                 ", startDate=" + startDate +
                 ", applicationCloseDate=" + applicationCloseDate +
-                ", recruiter=" + recruiter +
+                ", recruiterId=" + recruiterId +
                 ", numberOfApplicants=" + numberOfApplicants +
                 '}';
     }

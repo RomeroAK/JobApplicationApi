@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import com.jobapplicationapi.jobapplicationapi.address.Address;
 
 @Entity
+@Table(name = "recruiter")
 public class Recruiter{
 
    @Id

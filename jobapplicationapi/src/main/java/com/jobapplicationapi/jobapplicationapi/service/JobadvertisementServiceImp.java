@@ -5,6 +5,8 @@ import com.jobapplicationapi.jobapplicationapi.repository.JobAdvertisementReposi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,10 +21,19 @@ public class JobadvertisementServiceImp implements JobAdvertisementService{
         return jobAdvertisementRepository.findAll();
     }
 
+
+    public List<JobAdvertisements> getJobAdvertByRecruiterId(Long recruiterId) {
+        return jobAdvertisementRepository.getJobAdvertByRecruiterId(recruiterId);
+    }
+
+
+
     @Override
     public Optional<JobAdvertisements> getAJobAdvertisementById(Long id) {
         return jobAdvertisementRepository.findById(id);
     }
+
+
 
     @Override
     public JobAdvertisements updateJobInfo(JobAdvertisements jobAdvertisements) {

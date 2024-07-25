@@ -1,7 +1,7 @@
 package com.jobapplicationapi.jobapplicationapi.service;
 
 import com.jobapplicationapi.jobapplicationapi.repository.JobSeekerRepository;
-import com.jobapplicationapi.jobapplicationapi.users.JobSeeker;
+import com.jobapplicationapi.jobapplicationapi.entities.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

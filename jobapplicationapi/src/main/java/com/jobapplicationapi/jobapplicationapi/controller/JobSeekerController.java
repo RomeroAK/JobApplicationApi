@@ -1,7 +1,7 @@
 package com.jobapplicationapi.jobapplicationapi.controller;
 
 import com.jobapplicationapi.jobapplicationapi.service.JobSeekerService;
-import com.jobapplicationapi.jobapplicationapi.users.JobSeeker;
+import com.jobapplicationapi.jobapplicationapi.entities.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

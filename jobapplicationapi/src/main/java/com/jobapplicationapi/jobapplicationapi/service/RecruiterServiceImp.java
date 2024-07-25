@@ -1,12 +1,14 @@
 package com.jobapplicationapi.jobapplicationapi.service;
 
 import com.jobapplicationapi.jobapplicationapi.repository.RicruiterRepository;
-import com.jobapplicationapi.jobapplicationapi.users.Recruiter;
+import com.jobapplicationapi.jobapplicationapi.entities.Recruiter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class RecruiterServiceImp implements RecruiterService{
 
     @Autowired
