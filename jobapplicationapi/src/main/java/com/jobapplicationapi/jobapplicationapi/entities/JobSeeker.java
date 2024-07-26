@@ -1,9 +1,11 @@
 package com.jobapplicationapi.jobapplicationapi.entities;
 
+import com.jobapplicationapi.jobapplicationapi.application.JobAdvertisements;
 import jakarta.persistence.*;
 import com.jobapplicationapi.jobapplicationapi.address.Address;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 
 @Entity
@@ -23,12 +25,15 @@ public class JobSeeker{
     @Column(name = "id_num",length = 16,nullable = false,unique = true)
     private String idNumber;
     private boolean currentlyEmployed;
+    private List<JobAdvertisements> appliedJobs;
+
+
 
     public JobSeeker() {
 
     }
 
-    public JobSeeker(boolean currentlyEmployed, String idNumber, String gender, Address address, int age, String surname, String name) {
+    public JobSeeker(boolean currentlyEmployed, String idNumber, String gender, Address address, int age, String surname, String name, List<JobAdvertisements> appliedJobs) {
         this.currentlyEmployed = currentlyEmployed;
         this.idNumber = idNumber;
         this.gender = gender;
@@ -36,6 +41,7 @@ public class JobSeeker{
         this.age = age;
         this.surname = surname;
         this.name = name;
+        this.appliedJobs = appliedJobs;
     }
 
     public String getName() {
@@ -102,6 +108,13 @@ public class JobSeeker{
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public List<JobAdvertisements> getAppliedJobs() {
+        return appliedJobs;
+    }
+
+    public void setAppliedJobs(List<JobAdvertisements> appliedJobs) {
+        this.appliedJobs = appliedJobs;
     }
 
     @Override

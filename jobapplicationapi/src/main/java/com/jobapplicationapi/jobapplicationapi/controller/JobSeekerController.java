@@ -1,7 +1,10 @@
 package com.jobapplicationapi.jobapplicationapi.controller;
 
+import com.jobapplicationapi.jobapplicationapi.application.JobAdvertisements;
 import com.jobapplicationapi.jobapplicationapi.service.JobSeekerService;
 import com.jobapplicationapi.jobapplicationapi.entities.JobSeeker;
+import com.jobapplicationapi.jobapplicationapi.service.JobadvertisementServiceImp;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,9 @@ public class JobSeekerController {
 
     @Autowired
     private  JobSeekerService jobSeekerService;
+
+    @Autowired
+    private JobadvertisementServiceImp serviceImp;
 
     @GetMapping
     public ResponseEntity<List<JobSeeker>> getAllJobSeekers(){
@@ -49,6 +55,24 @@ public class JobSeekerController {
     public ResponseEntity<Void> deleteJobSeeker(@PathVariable Long Id){
         jobSeekerService.deleteJobSeeker(Id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/apply/{jobId}")
+    public ResponseEntity<Boolean> applyToJobVacancy(@PathVariable Long id, @PathVariable Long jobId){
+        Optional<JobAdvertisements> jbOptional = serviceImp.getAJobAdvertisementById(jobId);
+        if (jbOptional.isPresent()){
+            jobSeekerService.applyToJob(id,jbOptional.get());
+            return ResponseEntity.ok(true);
+        } else return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/{id}/cancel/{jobId}")
+    public ResponseEntity<Boolean> cancelApplication(@PathVariable Long id, @PathVariable Long jobId){
+        Optional<JobAdvertisements> jbOptional = serviceImp.getAJobAdvertisementById(jobId);
+        if(jbOptional.isPresent()){
+            jobSeekerService.cancelApplication(id,jbOptional.get());
+            return ResponseEntity.ok(true);
+        } else return ResponseEntity.notFound().build();
     }
 
 }

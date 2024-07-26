@@ -1,5 +1,7 @@
 package com.jobapplicationapi.jobapplicationapi.controller;
 
+import com.jobapplicationapi.jobapplicationapi.application.JobAdvertisements;
+import com.jobapplicationapi.jobapplicationapi.service.JobadvertisementServiceImp;
 import com.jobapplicationapi.jobapplicationapi.service.RecruiterServiceImp;
 
 import com.jobapplicationapi.jobapplicationapi.entities.Recruiter;
@@ -16,6 +18,9 @@ public class RecruiterController {
 
     @Autowired
     private RecruiterServiceImp serviceImp;
+
+    @Autowired
+    private JobadvertisementServiceImp jobServiceImp;
 
     @GetMapping
     public ResponseEntity<List<Recruiter>>getAllRecruiters(){
@@ -50,5 +55,18 @@ public class RecruiterController {
     public ResponseEntity<Void> deleteRecruiter(@PathVariable Long companyId){
         serviceImp.deleteRecruiter(companyId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/jobs")
+    public ResponseEntity<JobAdvertisements> uploadNewJobvaancy(@RequestBody JobAdvertisements newJob){
+        jobServiceImp.uploadJobAvertisemet(newJob);
+        return ResponseEntity.ok(newJob);
+    }
+
+    @PutMapping("/jobs/{id}")
+    public ResponseEntity<JobAdvertisements> updateJob(@PathVariable Long id, @RequestBody JobAdvertisements jobAdvertisements){
+        jobAdvertisements.setJobId(id);
+        JobAdvertisements updateJob = jobServiceImp.updateJobInfo(jobAdvertisements);
+        return ResponseEntity.ok(updateJob);
     }
 }

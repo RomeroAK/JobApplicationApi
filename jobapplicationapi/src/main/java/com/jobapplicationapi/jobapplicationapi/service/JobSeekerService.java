@@ -1,5 +1,6 @@
 package com.jobapplicationapi.jobapplicationapi.service;
 
+import com.jobapplicationapi.jobapplicationapi.application.JobAdvertisements;
 import com.jobapplicationapi.jobapplicationapi.repository.JobSeekerRepository;
 import com.jobapplicationapi.jobapplicationapi.entities.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,28 @@ public class JobSeekerService implements JobSeekerServiceInterface {
     public List<JobSeeker> getAllJobSeekers() {
         return jobSeekerRepository.findAll();
     }
+
+    @Override
+    public boolean applyToJob(Long jobSeekerId, JobAdvertisements jobVacany) {
+        Optional<JobSeeker> jobSeekerOptional = jobSeekerRepository.findById(jobSeekerId);
+        if(jobSeekerOptional.isPresent()){
+            JobSeeker jobSeeker = jobSeekerOptional.get();
+            jobSeeker.getAppliedJobs().add(jobVacany);
+            jobSeekerRepository.save(jobSeeker);
+            return true;
+        } else return false;
+    }
+
+    @Override
+    public boolean cancelApplication(Long jobSeekerId, JobAdvertisements jobVacancy) {
+        Optional<JobSeeker> jobSeekerOptional = jobSeekerRepository.findById(jobSeekerId);
+        if(jobSeekerOptional.isPresent()){
+            JobSeeker jobSeeker = jobSeekerOptional.get();
+            jobSeeker.getAppliedJobs().remove(jobVacancy);
+            jobSeekerRepository.save(jobSeeker);
+            return true;
+        } else return false;
+    }
+
 
 }

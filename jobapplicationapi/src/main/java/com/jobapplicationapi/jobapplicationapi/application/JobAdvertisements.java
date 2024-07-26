@@ -1,6 +1,7 @@
 package com.jobapplicationapi.jobapplicationapi.application;
 
 
+import com.jobapplicationapi.jobapplicationapi.entities.Recruiter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
@@ -46,8 +47,8 @@ public class JobAdvertisements {
         return recruiterId;
     }
 
-    public void setRecruiterId(Long recruiterId) {
-        this.recruiterId = recruiterId;
+    public void setRecruiterId(Recruiter recruiterId) {
+        this.recruiterId = recruiterId.getCompanyId();
     }
 
     public LocalDate getApplicationCloseDate() {
